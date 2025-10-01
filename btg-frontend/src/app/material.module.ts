@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 
-// Importaciones de los módulos de Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';

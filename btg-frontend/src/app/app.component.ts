@@ -10,7 +10,7 @@ import { TransaccionesListComponent } from './components/transacciones-list/tran
   standalone: true,
   imports: [
     CommonModule,
-    MaterialModule, // Importamos nuestro módulo de Material
+    MaterialModule, 
     ClienteInfoComponent,
     FondosListComponent,
     TransaccionesListComponent

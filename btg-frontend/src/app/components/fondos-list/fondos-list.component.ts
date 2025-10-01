@@ -18,7 +18,6 @@ export class FondosListComponent implements OnInit {
   fondos: Fondo[] | null = null;
   public cliente$: Observable<Cliente | null>;
 
-  // Propiedad para el selector de notificación
   public tipoNotificacion: 'email' | 'sms' = 'email';
 
   constructor(private apiService: ApiService, private snackBar: MatSnackBar) {
@@ -36,7 +35,6 @@ export class FondosListComponent implements OnInit {
   }
 
   suscribir(fondoId: number): void {
-    // Usamos la propiedad 'tipoNotificacion' en el request
     const request: SuscripcionRequest = { idFondo: fondoId, tipoNotificacion: this.tipoNotificacion };
     this.apiService.suscribir(request).subscribe({
       next: (res) => this.snackBar.open("Suscripción exitosa. Se envió una notificación.", 'Cerrar', { duration: 3000 }),
@@ -45,7 +43,7 @@ export class FondosListComponent implements OnInit {
   }
 
   cancelar(fondoId: number): void {
-    const request: SuscripcionRequest = { idFondo: fondoId, tipoNotificacion: 'email' }; // El tipo no importa en la cancelación
+    const request: SuscripcionRequest = { idFondo: fondoId, tipoNotificacion: 'email' }; 
     this.apiService.cancelar(request).subscribe({
       next: (res) => this.snackBar.open(res.message, 'Cerrar', { duration: 3000 }),
       error: (err) => this.snackBar.open(err.error.message, 'Cerrar', { duration: 5000 })

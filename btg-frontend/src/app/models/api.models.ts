@@ -24,7 +24,7 @@ export interface Transaccion {
   idFondo: number;
   nombreFondo: string;
   monto: number;
-  fecha: string; // Recibimos la fecha como string
+  fecha: string; 
 }
 
 export interface SuscripcionRequest {
