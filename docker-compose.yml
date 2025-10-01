@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # Servicio del Backend
+  backend:
+    build:
+      context: ./gestion-fondos # Directorio donde está el Dockerfile del backend
+    container_name: btg-backend
+    ports:
+      - "8080:8080" # Mapea el puerto 8080 del host al 8080 del contenedor
+    networks:
+      - btg-network
+
+  # Servicio del Frontend
+  frontend:
+    build:
+      context: ./btg-frontend # Directorio donde está el Dockerfile del frontend
+    container_name: btg-frontend
+    ports:
+      - "4200:80" # Mapea el puerto 4200 del host al 80 del contenedor Nginx
+    depends_on:
+      - backend # El frontend no se iniciará hasta que el backend esté listo
+    networks:
+      - btg-network
+
+networks:
+  btg-network:
+    driver: bridge
