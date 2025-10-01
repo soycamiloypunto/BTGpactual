@@ -1,0 +1,31 @@
+<mat-card *ngIf="cliente$ | async as cliente">
+  <mat-card-header>
+    <mat-card-title>Información del Cliente</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field class="full-width-input">
+      <mat-label>Correo de Notificación</mat-label>
+      <input matInput [(ngModel)]="emailEdit" required email>
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="guardarEmail()" [disabled]="emailEdit === originalEmail" class="full-width-button save-button">
+      Guardar Email
+    </button>
+    <mat-divider></mat-divider>
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle>Saldo Disponible</span>
+        <span matListItemLine>{{ cliente.saldo | currency:'COP':'symbol-narrow':'1.0-0' }}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <span matListItemTitle>Fondos Suscritos</span>
+        <span matListItemLine>{{ cliente.fondosSuscritos.length }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions *ngIf="cliente.fondosSuscritos.length > 0">
+    <button mat-stroked-button color="warn" class="full-width-button" (click)="cancelarTodo()">
+      Cancelar Todas las Suscripciones
+    </button>
+  </mat-card-actions>
+</mat-card>

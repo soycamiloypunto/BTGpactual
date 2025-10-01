@@ -1,0 +1,22 @@
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.select-notification {
+  width: 120px;
+  margin-right: 8px;
+}
+
+/* Le damos al botón de cancelar un ancho mínimo para que siempre sea visible */
+.cancel-button {
+  min-width: 100px; 
+}

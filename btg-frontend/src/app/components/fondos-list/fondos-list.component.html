@@ -1,0 +1,41 @@
+<mat-card *ngIf="cliente$ | async as cliente">
+  <mat-card-header>
+    <mat-card-title>Fondos Disponibles</mat-card-title>
+  </mat-card-header>
+  <mat-card-content *ngIf="fondos; else loading">
+    <mat-list>
+      <div *ngFor="let fondo of fondos">
+        <mat-list-item>
+          <div matListItemMeta class="action-buttons">
+
+            <ng-container *ngIf="!estaSuscrito(cliente, fondo.id)">
+              <mat-form-field appearance="outline" class="select-notification">
+                <mat-label>Notificar</mat-label>
+                <mat-select [(ngModel)]="tipoNotificacion">
+                  <mat-option value="email">Email</mat-option>
+                  <mat-option value="sms">SMS</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-flat-button color="primary" (click)="suscribir(fondo.id)">Suscribir</button>
+            </ng-container>
+
+            <ng-container *ngIf="estaSuscrito(cliente, fondo.id)">
+              <button mat-stroked-button color="warn" class="cancel-button" (click)="cancelar(fondo.id)">Cancelar</button>
+            </ng-container>
+
+          </div>
+          <span matListItemTitle>{{ fondo.nombre }}</span>
+          <span matListItemLine>
+            {{ fondo.categoria }} | Mínimo: {{ fondo.montoMinimo | currency:'COP':'symbol-narrow':'1.0-0' }}
+          </span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-card-content>
+  <ng-template #loading>
+    <div class="spinner-container">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+  </ng-template>
+</mat-card>

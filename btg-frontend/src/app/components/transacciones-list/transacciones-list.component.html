@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Últimas Transacciones</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-container *ngIf="transacciones; else loading">
+      <mat-list *ngIf="transacciones.length > 0; else noData">
+        <div *ngFor="let tx of transacciones">
+          <mat-list-item>
+            <mat-icon matListItemIcon [color]="tx.tipo === 'APERTURA' ? 'primary' : 'warn'">
+              {{ tx.tipo === 'APERTURA' ? 'add_circle' : 'remove_circle' }}
+            </mat-icon>
+            <span matListItemTitle>{{ tx.nombreFondo }}</span>
+            <span matListItemLine>
+              ID: {{ tx.id.substring(0, 8) }}... | {{ tx.tipo }} - {{ tx.monto | currency:'COP':'symbol-narrow':'1.0-0' }} - {{ tx.fecha | date:'short' }}
+            </span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-list>
+      <ng-template #noData>
+        <p class="info-text">No hay transacciones para mostrar.</p>
+      </ng-template>
+    </ng-container>
+    <ng-template #loading>
+      <div class="spinner-container">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,12 @@
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.info-text {
+  padding: 16px;
+  text-align: center;
+  color: grey;
+}

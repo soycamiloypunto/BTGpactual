@@ -1,0 +1,10 @@
+.full-width-input, .full-width-button {
+  width: 100%;
+}
+.save-button {
+  margin-bottom: 16px;
+}
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}

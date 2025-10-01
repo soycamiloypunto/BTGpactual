@@ -1,0 +1,22 @@
+# Archivos del sistema operativo y de IDEs
+.DS_Store
+.vscode/
+.idea/
+*.iml
+*.iws
+
+# Archivos de Log
+*.log
+
+# Backend - Java / Gradle
+build/
+.gradle/
+bin/
+out/
+*.class
+
+# Frontend - Node / Angular
+node_modules/
+dist/
+.angular/
+npm-debug.log
