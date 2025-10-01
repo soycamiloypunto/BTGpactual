@@ -33,3 +33,24 @@ Para garantizar una solución robusta, escalable y moderna, se seleccionó un st
 ### Justificación General
 
 La combinación de **Spring Boot y Angular** es una de las arquitecturas más probadas y demandadas en el desarrollo de aplicaciones web empresariales. Permite una clara separación de responsabilidades entre el backend (lógica de negocio y datos) y el frontend (presentación e interacción con el usuario), lo que facilita el desarrollo paralelo, el mantenimiento y la escalabilidad futura del sistema.
+
+## Anexo: Diseño del Modelo de Datos NoSQL
+
+[cite_start]Esta sección responde al requerimiento 1.b de la prueba técnica: "Diseñe un modelo de datos NoSQL que permita la solución al problema".
+
+Para una base de datos NoSQL orientada a documentos como MongoDB, el enfoque cambia de la normalización (múltiples tablas relacionadas) a la **desnormalización**, donde los datos que se leen juntos se almacenan juntos en un mismo documento. Esto optimiza drásticamente el rendimiento de las lecturas al eliminar la necesidad de operaciones `JOIN`.
+
+El diseño propuesto consistiría en dos colecciones principales: `fondos` y `clientes`.
+
+### Colección: `fondos`
+
+Esta colección almacenaría la información de cada fondo de inversión. Sería una colección de solo lectura para la aplicación del cliente.
+
+**Ejemplo de Documento:**
+```json
+{
+  "_id": 1,
+  "nombre": "FPV_BTG_PACTUAL_RECAUDADORA",
+  "montoMinimo": 75000,
+  "categoria": "FPV"
+}
