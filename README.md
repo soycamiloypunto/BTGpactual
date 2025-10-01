@@ -36,7 +36,7 @@ La combinación de **Spring Boot y Angular** es una de las arquitecturas más pr
 
 ## Anexo: Diseño del Modelo de Datos NoSQL
 
-[cite_start]Esta sección responde al requerimiento 1.b de la prueba técnica: "Diseñe un modelo de datos NoSQL que permita la solución al problema".
+Esta sección responde al requerimiento 1.b de la prueba técnica: "Diseñe un modelo de datos NoSQL que permita la solución al problema".
 
 Para una base de datos NoSQL orientada a documentos como MongoDB, el enfoque cambia de la normalización (múltiples tablas relacionadas) a la **desnormalización**, donde los datos que se leen juntos se almacenan juntos en un mismo documento. Esto optimiza drásticamente el rendimiento de las lecturas al eliminar la necesidad de operaciones `JOIN`.
 
@@ -54,8 +54,10 @@ Esta colección almacenaría la información de cada fondo de inversión. Sería
   "montoMinimo": 75000,
   "categoria": "FPV"
 }
+```
 
-### Colección: `clientes`
+
+### Colección: `fondos`
 
 Esta es la colección principal. Cada documento contendría toda la información relevante de un cliente, incluyendo sus suscripciones activas y su historial de transacciones, incrustados como arreglos de sub-documentos. Almacenar los datos de esta manera permite que, con una sola consulta, la aplicación recupere toda la información necesaria para renderizar la pantalla del usuario.
 
@@ -92,6 +94,7 @@ Esta es la colección principal. Cada documento contendría toda la información
     }
   ]
 }
+```
 
 ### la Migración
 La migración en el código sería sencilla gracias a Spring Data:
