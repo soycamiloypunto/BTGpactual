@@ -54,3 +54,48 @@ Esta colección almacenaría la información de cada fondo de inversión. Sería
   "montoMinimo": 75000,
   "categoria": "FPV"
 }
+
+### Colección: `clientes`
+
+Esta es la colección principal. Cada documento contendría toda la información relevante de un cliente, incluyendo sus suscripciones activas y su historial de transacciones, incrustados como arreglos de sub-documentos. Almacenar los datos de esta manera permite que, con una sola consulta, la aplicación recupere toda la información necesaria para renderizar la pantalla del usuario.
+
+**Ejemplo de Documento:**
+```json
+{
+  "_id": "UNICO-CLIENTE",
+  "email": "cliente.ejemplo@email.com",
+  "saldo": 350000,
+  "fondosSuscritos": [
+    {
+      "fondoId": 1,
+      "nombreFondo": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "montoInvertido": 75000,
+      "fechaSuscripcion": "2025-09-30T18:30:00Z"
+    }
+  ],
+  "historialTransacciones": [
+    {
+      "transaccionId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      "tipo": "APERTURA",
+      "fondoId": 2,
+      "nombreFondo": "FPV_BTG_PACTUAL_ECOPETROL",
+      "monto": 125000,
+      "fecha": "2025-09-30T23:10:00Z"
+    },
+    {
+      "transaccionId": "f0e9d8c7-b6a5-4321-fedc-ba0987654321",
+      "tipo": "APERTURA",
+      "fondoId": 1,
+      "nombreFondo": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "monto": 75000,
+      "fecha": "2025-09-30T23:05:00Z"
+    }
+  ]
+}
+
+### la Migración
+La migración en el código sería sencilla gracias a Spring Data:
+- Se reemplazaría spring-boot-starter-data-jpa por spring-boot-starter-data-mongodb
+- Las clases Java usarían la anotación @Document en lugar de @Entity. La clase Cliente contendría List<FondoSuscrito> y List<Transaccion> como atributos
+- Se extendería de MongoRepository en lugar de JpaRepository. La mayoría de los métodos (save, findById) tienen la misma firma, minimizando los cambios en la capa de servicio.
+
